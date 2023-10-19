@@ -1,0 +1,24 @@
+name: Rust
+
+on:
+  push:
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: ./scripts/build_ios.sh
+    - name: Run core tests
+      run: cd mopro-core/ && cargo test --verbose
+    - name: Run ffi tests
+      run: cd mopro-ffi/ && cargo test --verbose
+    - name: Run bundle tests
+      run: cd mopro-ffi/ && cargo test --test test_generated_bindings
