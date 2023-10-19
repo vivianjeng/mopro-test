@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: ./scripts/build_ios.sh
+      run: ./scripts/build_ios.sh simulator debug
     - name: Run core tests
       run: cd mopro-core/ && cargo test --verbose
     - name: Run ffi tests
